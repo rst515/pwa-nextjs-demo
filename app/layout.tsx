@@ -1,6 +1,14 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+
+export const viewport: Viewport = {
+    themeColor: [{ media: "(prefers-color-scheme: dark)", color: "#fff" }],
+    minimumScale: 1,
+    initialScale: 1,
+    width: 'device-width',
+    viewportFit: 'cover',
+}
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -10,15 +18,12 @@ export const metadata: Metadata = {
   generator: "Next.js",
   manifest: "/manifest.json",
   keywords: ["nextjs", "next14", "pwa", "next-pwa"],
-  themeColor: [{ media: "(prefers-color-scheme: dark)", color: "#fff" }],
   authors: [
     {
       name: "imvinojanv",
       url: "https://www.linkedin.com/in/imvinojanv/",
     },
   ],
-  viewport:
-    "minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover",
   icons: [
     { rel: "apple-touch-icon", url: "icons/icon.png" },
     { rel: "icon", url: "icons/icon.png" },
