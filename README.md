@@ -15,6 +15,7 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Note: PWA features are disabled in development mode but the app can still be added to home screen.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
