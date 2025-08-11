@@ -4,6 +4,7 @@ export async function POST(req) {
   try {
     const body = await req.json();
     subscriptions.push(body);
+    console.log(`Saved ${subscriptions.length} subscription`);
     return new Response(JSON.stringify({ success: true }), { status: 201 });
   } catch (err) {
       console.error(err);
@@ -16,5 +17,6 @@ export async function GET() {
 }
 
 export function getSubscriptions() {
-  return subscriptions;
+    console.log('getSubscriptions count: ', subscriptions.length);
+    return subscriptions;
 }
