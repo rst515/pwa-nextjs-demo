@@ -1,22 +1,20 @@
-let subscriptions = [];
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+
+import { addSubscription, getSubscriptions } from '../../../utils/subscriptions.js';
 
 export async function POST(req) {
   try {
     const body = await req.json();
-    subscriptions.push(body);
-    console.log(`Saved ${subscriptions.length} subscription`);
+    addSubscription(body);
     return new Response(JSON.stringify({ success: true }), { status: 201 });
   } catch (err) {
-      console.error(err);
+    console.error(err);
     return new Response(JSON.stringify({ error: 'Invalid body' }), { status: 400 });
   }
 }
 
 export async function GET() {
-  return new Response(JSON.stringify({ count: subscriptions.length, subscriptions }), { status: 200 });
-}
-
-export function getSubscriptions() {
-    console.log('getSubscriptions count: ', subscriptions.length);
-    return subscriptions;
+  const subs = getSubscriptions();
+  return new Response(JSON.stringify({ count: subs.length, subscriptions: subs }), { status: 200 });
 }

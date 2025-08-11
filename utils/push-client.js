@@ -3,6 +3,7 @@ export async function subscribeToPush() {
     alert('Push notifications are not supported in this browser.');
     return;
   }
+  console.log('Subscribing to push...');
 
   const registration = await navigator.serviceWorker.ready;
 

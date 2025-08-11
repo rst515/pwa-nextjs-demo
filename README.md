@@ -1,6 +1,6 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Getting Started with the PWA
 
 First, run the development server:
 
@@ -20,6 +20,11 @@ Note: PWA features are disabled in development mode but the app can still be add
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+
+## Notifications
+
+A prod build is required to enable notifications.
+> npm run build && npm start
 
 ## Learn More
 

@@ -31,6 +31,7 @@ export default function Home() {
             <button
                 style={{backgroundColor: 'purple', color: 'white', padding: '8px 16px', border: 'none', borderRadius: 5}}
                 onClick={async () => {
+                    console.log('Sending test notification...');
                     await fetch('/api/send-notification');
                     alert('Notification sent!');
                 }}
