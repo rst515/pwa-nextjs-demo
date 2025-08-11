@@ -1,4 +1,8 @@
+'use client';
+
 import Image from "next/image";
+import { subscribeToPush } from '@/utils/push-client';
+
 
 export default function Home() {
   return (
@@ -17,6 +21,23 @@ export default function Home() {
         |
         <p className="opacity-80">©imvinojanv</p>
       </div>
+
+        <h1>Next.js PWA Push Demo (App Router)</h1>
+        <div style={{display: 'flex', gap: 10, backgroundColor: 'darkgrey', padding: 10, borderRadius: 10}}>
+            <button
+                style={{backgroundColor: 'forestgreen', color: 'white', padding: '8px 16px', border: 'none', borderRadius: 5}}
+                onClick={subscribeToPush}>Enable Notifications
+            </button>
+            <button
+                style={{backgroundColor: 'purple', color: 'white', padding: '8px 16px', border: 'none', borderRadius: 5}}
+                onClick={async () => {
+                    await fetch('/api/send-notification');
+                    alert('Notification sent!');
+                }}
+            >
+                Send Test Notification
+            </button>
+        </div>
     </main>
   );
 }
