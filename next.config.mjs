@@ -6,7 +6,12 @@ const nextConfig = {
     swcMinify: true,            // Enable SWC minification for improved performance
     compiler: {
         removeConsole: process.env.NODE_ENV !== 'development'       // Remove console.log in production
-    }
+    },
+    allowedDevOrigins: [
+        'localhost',
+        '127.0.0.1',
+        '192.168.1.140',
+    ]
 };
 
 export default withPWA({
