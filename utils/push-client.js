@@ -51,6 +51,11 @@ export async function unsubscribeFromPush() {
   }
 }
 
+async function clearUnreadBadge() {
+    const reg = await navigator.serviceWorker.ready;
+    reg.active?.postMessage?.({ type: 'CLEAR_BADGE' });
+}
+
 function urlBase64ToUint8Array(base64String) {
   if (!base64String) {
     throw new Error('VAPID public key is missing. Set NEXT_PUBLIC_VAPID_PUBLIC_KEY in your .env.local');
