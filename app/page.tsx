@@ -90,50 +90,49 @@ export default function Home() {
 
       {/* Actions */}
       <div className="w-full max-w-md sm:max-w-2xl">
-        <div
-          className="flex flex-col md:flex-row gap-3 sm:gap-4 bg-gray-700/80 p-4 sm:p-5 rounded-xl"
-          style={{ justifyContent: 'space-between' }}
-        >
-          <button
-            className={`relative inline-flex items-center justify-center whitespace-nowrap w-full sm:w-auto text-sm sm:text-base px-4 py-3 rounded-xl text-white transition-opacity ${
-              loading || isSubscribed ? 'opacity-60 cursor-not-allowed' : 'opacity-100'
-            } ${isSubscribed ? 'bg-green-700/50' : 'bg-green-600 hover:bg-green-700'}`}
-            onClick={handleEnableNotifications}
-            disabled={loading || isSubscribed}
+          <div
+              className="flex flex-col md:flex-row gap-3 sm:gap-4 bg-gray-700/80 p-4 sm:p-5 rounded-xl"
+              style={{justifyContent: 'space-between'}}
           >
-            <span className="opacity-0">Enable Notifications</span>
-            <span className="absolute inset-0 flex items-center justify-center">
+              <button
+                  className={`relative inline-flex items-center justify-center whitespace-nowrap w-full sm:w-auto text-sm sm:text-base px-4 py-3 rounded-xl text-white transition-opacity ${
+                      loading || isSubscribed ? 'opacity-60 cursor-not-allowed' : 'opacity-100'
+                  } ${isSubscribed ? 'bg-green-700/50' : 'bg-green-600 hover:bg-green-700'}`}
+                  onClick={handleEnableNotifications}
+                  disabled={loading || isSubscribed}
+              >
+                  <span className="opacity-0">Enable Notifications</span>
+                  <span className="absolute inset-0 flex items-center justify-center">
               {loading && !isSubscribed ? 'Enabling…' : 'Enable Notifications'}
             </span>
-          </button>
+              </button>
 
-          <button
-            className={`relative inline-flex items-center justify-center whitespace-nowrap w-full sm:w-auto text-sm sm:text-base px-4 py-3 rounded-xl transition-opacity ${
-              loading || !isSubscribed ? 'opacity-60 cursor-not-allowed' : 'opacity-100'
-            } ${isSubscribed ? 'bg-red-600 text-white hover:bg-red-700' : 'bg-gray-400 text-gray-200'}`}
-            onClick={handleDisableNotifications}
-            disabled={loading || !isSubscribed}
-          >
-            <span className="opacity-0">Disable Notifications</span>
-            <span className="absolute inset-0 flex items-center justify-center">
+              <button
+                  className={`relative inline-flex items-center justify-center whitespace-nowrap w-full sm:w-auto text-sm sm:text-base px-4 py-3 rounded-xl transition-opacity ${
+                      loading || !isSubscribed ? 'opacity-60 cursor-not-allowed' : 'opacity-100'
+                  } ${isSubscribed ? 'bg-red-700 text-white hover:bg-red-900' : 'bg-gray-400 text-gray-200'}`}
+                  onClick={handleDisableNotifications}
+                  disabled={loading || !isSubscribed}
+              >
+                  <span className="opacity-0">Disable Notifications</span>
+                  <span className="absolute inset-0 flex items-center justify-center">
               {loading && isSubscribed ? 'Disabling…' : 'Disable Notifications'}
             </span>
-          </button>
+              </button>
 
-          <button
-            className={`relative inline-flex items-center justify-center whitespace-nowrap w-full sm:w-auto text-sm sm:text-base px-4 py-3 rounded-xl transition-opacity ${
-            // className={`w-full sm:w-auto text-sm sm:text-base px-4 py-3 rounded-xl transition-opacity ${
-              loading || !isSubscribed ? 'opacity-60 cursor-not-allowed' : 'opacity-100'
-            } ${isSubscribed ? 'bg-purple-600 text-white hover:bg-purple-700' : 'bg-gray-400 text-gray-200'}`}
-            onClick={async () => {
-              console.log('Sending test notification...');
-              await fetch('/api/send-notification');
-            }}
-            disabled={!isSubscribed || loading}
-          >
-            Send Notification
-          </button>
-        </div>
+              <button
+                  className={`relative inline-flex items-center justify-center whitespace-nowrap w-full sm:w-auto text-sm sm:text-base px-4 py-3 rounded-xl transition-opacity ${
+                      loading || !isSubscribed ? 'opacity-60 cursor-not-allowed' : 'opacity-100'
+                  } ${isSubscribed ? 'bg-purple-600 text-white hover:bg-purple-700' : 'bg-gray-400 text-gray-200'}`}
+                  onClick={async () => {
+                      console.log('Sending test notification...');
+                      await fetch('/api/send-notification');
+                  }}
+                  disabled={!isSubscribed || loading}
+              >
+                  Send Notification
+              </button>
+          </div>
       </div>
     </main>
   );
