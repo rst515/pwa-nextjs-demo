@@ -4,6 +4,14 @@ export const dynamic = 'force-dynamic';
 import webpush from 'web-push';
 import { getSubscriptions } from '../../../utils/subscriptions.js';
 
+import dayjs from 'dayjs';
+import timezone from 'dayjs/plugin/timezone';
+import utc from 'dayjs/plugin/utc';
+import LocalizedFormat from 'dayjs/plugin/localizedFormat';
+dayjs.extend(timezone);
+dayjs.extend(utc);
+dayjs.extend(LocalizedFormat)
+
 const publicKey = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY;
 const privateKey = process.env.VAPID_PRIVATE_KEY;
 const subject = process.env.VAPID_SUBJECT || 'mailto:you@example.com';
@@ -13,11 +21,13 @@ if (!publicKey || !privateKey || !subject) {
 }
 webpush.setVapidDetails(subject, publicKey, privateKey);
 
+const now = dayjs().tz('Europe/London');
+
 const payload = JSON.stringify({
   title: 'Weekly summary',
-  body: 'You have 3 new reports ready.',
+  body: `Sent ${now.format('LLLL')}`,
   icon: '/icons/icon.png',
-  badge: '/icons/icon.png',
+  badge: 'icons/gold_badge.png',
   tag: 'weekly-summary',
   renotify: true,
   requireInteraction: true,

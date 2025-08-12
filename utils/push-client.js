@@ -21,6 +21,39 @@ export async function subscribeToPush() {
   alert('Push subscription registered!');
 }
 
+export async function unsubscribeFromPush() {
+  if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
+    alert('Push notifications are not supported in this browser.');
+    return;
+  }
+  console.log('Unsubscribing from push...');
+
+  const registration = await navigator.serviceWorker.ready;
+  const subscription = await registration.pushManager.getSubscription();
+
+  if (!subscription) {
+    alert('No active push subscription found.');
+    return;
+  }
+
+  const endpoint = subscription.endpoint;
+
+  // Unsubscribe in the browser
+  const unsubscribed = await subscription.unsubscribe();
+
+  // Reflect the change on the server store
+  if (unsubscribed) {
+    await fetch('/api/save-subscription', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ endpoint })
+    });
+    alert('Push subscription removed.');
+  } else {
+    alert('Failed to unsubscribe.');
+  }
+}
+
 function urlBase64ToUint8Array(base64String) {
   if (!base64String) {
     throw new Error('VAPID public key is missing. Set NEXT_PUBLIC_VAPID_PUBLIC_KEY in your .env.local');

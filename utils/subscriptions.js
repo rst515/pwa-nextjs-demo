@@ -13,3 +13,15 @@ export function getSubscriptions() {
   console.log(`Returning ${store.length} subscriptions`);
   return store;
 }
+
+export function removeSubscriptionByEndpoint(endpoint) {
+    if (!endpoint) return false;
+    const idx = store.findIndex(s => s?.endpoint === endpoint);
+    if (idx !== -1) {
+        store.splice(idx, 1);
+        console.log(`Removed subscription. Now ${store.length} subscription(s)`);
+        return true;
+    }
+    console.log('No matching subscription to remove');
+    return false;
+}

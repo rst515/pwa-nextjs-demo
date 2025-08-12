@@ -73,8 +73,9 @@ self.addEventListener('push', function (event) {
     const data = event.data ? event.data.json() : {};
     event.waitUntil((async () => {
         // 1) Increment and set the app badge (numeric) when a new message arrives
-        const current = await getBadgeCount();
-        await setBadgeCount(current + 1);
+        // const current = await getBadgeCount();
+        // await setBadgeCount(current + 1);
+        // console.log('Badge incremented to', current + 1);
 
         // 2) Show the notification; include a badge icon as a visual fallback
         // Replace the icon/badge paths with your own assets
