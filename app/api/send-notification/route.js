@@ -21,18 +21,16 @@ if (!publicKey || !privateKey || !subject) {
 }
 webpush.setVapidDetails(subject, publicKey, privateKey);
 
-const now = dayjs().tz('Europe/London');
-
-const payload = JSON.stringify({
+const payloadTemplate = JSON.stringify({
   title: 'Weekly summary',
-  body: `Sent ${now.format('LLLL')}`,
+  // body: `Sent ${now.format('LLLL')}`,
   icon: '/icons/icon.png',
   badge: 'icons/gold_badge.png',
   tag: 'weekly-summary',
   renotify: true,
   requireInteraction: true,
   vibrate: [100, 50, 100],
-  timestamp: Date.now(),
+  // timestamp: Date.now(),
   actions: [
     { action: 'open-reports', title: 'Open reports' },
     { action: 'dismiss', title: 'Dismiss' }
@@ -44,6 +42,7 @@ const payload = JSON.stringify({
   }
 });
 
+
 export async function GET() {
   const subs = getSubscriptions();
   console.log(`${new Date().toTimeString()} Sending to ${subs.length} subscription(s)`);
@@ -51,6 +50,11 @@ export async function GET() {
   if (!subs.length) {
     return new Response(JSON.stringify({ sent: false, count: 0, error: 'No subscriptions' }), { status: 200 });
   }
+  const now = dayjs().tz('Europe/London');
+  const payloadObj = JSON.parse(payloadTemplate);
+  payloadObj.body = `Sent ${now.format('LLLL')}`;
+  payloadObj.timestamp = Date.now(); // ensure per-request timestamp
+  const payload = JSON.stringify(payloadObj);
 
   const results = await Promise.allSettled(subs.map(sub => webpush.sendNotification(sub, payload)));
   const succeeded = results.filter(r => r.status === 'fulfilled').length;
