@@ -17,8 +17,6 @@ export async function subscribeToPush() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(subscription)
   });
-
-  alert('Push subscription registered!');
 }
 
 export async function unsubscribeFromPush() {
@@ -48,7 +46,6 @@ export async function unsubscribeFromPush() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ endpoint })
     });
-    alert('Push subscription removed.');
   } else {
     alert('Failed to unsubscribe.');
   }

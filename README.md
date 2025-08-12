@@ -1,4 +1,5 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Inspired by @imvinojanv
 
 ## Getting Started with the PWA
 
@@ -24,8 +25,13 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 ## Notifications
 
 A prod build is required to enable notifications.
-> npm run build && npm start
-
+```bash
+npm run build   
+# then
+npm start  
+# or  
+npm run dev
+```
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
