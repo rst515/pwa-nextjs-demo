@@ -101,6 +101,9 @@ Notes:
 
 ## Deployment
 
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Note: Full PWA features are disabled in development mode but the app can still be added to home screen.
+
 You can deploy to your preferred platform (e.g., Vercel or any Node hosting). Ensure:
 - You run a production build.
 - All required environment variables are configured on the hosting platform.
