@@ -52,7 +52,8 @@ Create a `.env.local` file in the project root and add:
 # Client-side public key (must match your generated public key)
 NEXT_PUBLIC_VAPID_PUBLIC_KEY=<your-public-key>
 # Server-side keys used by the API to send notifications
-VAPID_PUBLIC_KEY=<your-public-key> VAPID_PRIVATE_KEY=<your-private-key> VAPID_SUBJECT=mailto:<your-contact-email>
+VAPID_PRIVATE_KEY=<your-private-key>
+VAPID_SUBJECT=mailto:<your-contact-email>
 ```
 
 Notes:
